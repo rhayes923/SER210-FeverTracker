@@ -1,15 +1,19 @@
 package edu.quinnipiac.ser210.fevertracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ShareActionProvider;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    private ShareActionProvider provider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,22 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+
+        if (id == R.id.action_share) { //Share the cocktail
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            ///This is where the data will be shared with doctor
+            //intent.putExtra(Intent.EXTRA_TEXT, temp);
+            //intent.putExtra(Intent.EXTRA_TEXT, date);
+            //intent.putExtra(Intent.EXTRA_TEXT, time);
+            provider.setShareIntent(intent);
+        }
+
+        if (id == R.id.action_about) { //say what the app is about
+            Toast.makeText(getApplicationContext(),
+                    "This app is meant to help track your fever\nIt will allow you to share this data with your doctor.",
+                    Toast.LENGTH_LONG).show();
         }
 
         return super.onOptionsItemSelected(item);

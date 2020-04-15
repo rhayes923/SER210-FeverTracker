@@ -10,6 +10,10 @@
     <string name="hello_first_fragment">This application will allow you to input your temperature as well as the date and time of recording so that you can better share with your doctor a record of your fevers.</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="temp">Temperature: </string>
+    <string name="date">Date: </string>
+    <string name="time">Time: </string>
+
 </resources>

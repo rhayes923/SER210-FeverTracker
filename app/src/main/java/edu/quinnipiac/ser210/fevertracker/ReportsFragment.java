@@ -21,8 +21,6 @@ import java.util.List;
 
 public class ReportsFragment extends Fragment {
 
-    private SQLiteDatabase db;
-    private Cursor cursor;
     private Spinner spinner;
 
     public ReportsFragment() {

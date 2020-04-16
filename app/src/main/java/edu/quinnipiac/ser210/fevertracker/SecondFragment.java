@@ -26,6 +26,10 @@ public class SecondFragment extends Fragment {
         view.findViewById(R.id.btnNext).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String temp = getView().findViewById(R.id.txtTemp).toString();
+                String date = getView().findViewById(R.id.date_picker).toString();
+                String time = getView().findViewById(R.id.timePicker).toString();
+                MainActivity.insert(temp, date, time);
                 NavHostFragment.findNavController(SecondFragment.this)
                         .navigate(R.id.action_SecondFragment_to_reportsFragment);
             }

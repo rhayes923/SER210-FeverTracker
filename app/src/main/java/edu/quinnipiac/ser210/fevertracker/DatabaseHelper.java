@@ -13,7 +13,6 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "feverTracker"; //The name of the database
     private static final int DB_VERSION = 1; //The version of the database
-    private static final String COLUMN_ID = "_id";
 
     DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -41,13 +40,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private void updateMyDatabase(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion < 1) {
             db.execSQL("CREATE TABLE RECORD (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + "TEMPERATURE STRING, "
-                    + "DATE STRING, "
-                    + "TIME STRING); ");
+                    + "TEMPERATURE TEXT, "
+                    + "DATE TEXT, "
+                    + "TIME TEXT); ");
         }
         if (oldVersion < 2) {
 
         }
+    }
+
+    public List<String> displayReport(String id) {
+        List<String> list = new ArrayList<String>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.beginTransaction();
+        try {
+            String selectQuery = "SELECT * FROM RECORD WHERE _id = " + id;
+            Cursor cursor = db.rawQuery(selectQuery, null);
+            if (cursor.getCount() > 0) {
+                while (cursor.moveToNext()) {
+                    list.add(cursor.getString(cursor.getColumnIndex("TEMPERATURE")));
+                    list.add(cursor.getString(cursor.getColumnIndex("DATE")));
+                    list.add(cursor.getString(cursor.getColumnIndex("TIME")));
+                }
+            }
+            cursor.close();
+            db.setTransactionSuccessful();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+        }
+        return list;
     }
 
     public List<String> getAllReports() {

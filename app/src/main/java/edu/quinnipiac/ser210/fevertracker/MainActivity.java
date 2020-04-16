@@ -13,9 +13,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     private ShareActionProvider provider;
-    static DatabaseHelper db;
+    private static DatabaseHelper dbHelper;
+    private static SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        db = new DatabaseHelper(this);
+        dbHelper = new DatabaseHelper(this);
+        db = dbHelper.getWritableDatabase();
     }
 
     @Override
@@ -65,7 +69,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void insert(String temp, String date, String time) {
-        SQLiteDatabase dbase = db.getWritableDatabase();
-        db.insertRecord(dbase, temp, date, time);
+        dbHelper.insertRecord(db, temp, date, time);
+    }
+
+    public static List<String> displayInfo(String id) {
+        return dbHelper.displayReport(id);
     }
 }

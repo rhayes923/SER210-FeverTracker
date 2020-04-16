@@ -1,6 +1,7 @@
 package edu.quinnipiac.ser210.fevertracker;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 
@@ -12,8 +13,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     private ShareActionProvider provider;
+    private static DatabaseHelper dbHelper;
+    private static SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        dbHelper = new DatabaseHelper(this);
+        db = dbHelper.getWritableDatabase();
     }
 
     @Override
@@ -59,5 +66,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static void insert(String temp, String date, String time) {
+        dbHelper.insertRecord(db, temp, date, time);
+    }
+
+    public static List<String> displayInfo(String id) {
+        return dbHelper.displayReport(id);
     }
 }

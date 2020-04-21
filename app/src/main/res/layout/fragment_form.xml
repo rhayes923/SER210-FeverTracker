@@ -17,6 +17,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/txtTempInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter your temperature:" />
+
             <EditText
                 android:id="@+id/txtTemp"
                 android:layout_width="match_parent"
@@ -25,6 +31,18 @@
                 android:hint="Temperature"
                 android:inputType="numberDecimal" />
 
+            <View
+                android:id="@+id/divider_temp_date"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="?android:attr/listDivider" />
+
+            <TextView
+                android:id="@+id/txtDateLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter the date:" />
+
             <DatePicker
                 android:id="@+id/date_picker"
                 android:layout_width="wrap_content"
@@ -32,6 +50,18 @@
                 android:layout_gravity="center"
                 android:calendarViewShown="false"
                 android:spinnersShown="false" />
+
+            <View
+                android:id="@+id/divider_date_time"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="?android:attr/listDivider" />
+
+            <TextView
+                android:id="@+id/txtTimeLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter the time:" />
 
             <TimePicker
                 android:id="@+id/timePicker"

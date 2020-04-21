@@ -83,8 +83,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Cursor cursor = db.rawQuery(selectQuery, null);
             if (cursor.getCount() > 0) {
                 while (cursor.moveToNext()) {
-                    int id = cursor.getInt(cursor.getColumnIndex("_id"));
-                    list.add(String.valueOf(id));
+                    int id = cursor.getInt(cursor.getColumnIndex("TEMPERATURE"));
+                    list.add(String.valueOf(id) + " degrees");
                 }
             }
             db.setTransactionSuccessful();

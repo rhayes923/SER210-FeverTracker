@@ -56,6 +56,24 @@ public class ReportsFragment extends Fragment {
         return view;
     }
 
+    private void loadListData() {
+        DatabaseHelper db = new DatabaseHelper(getContext());
+        List<String> reports = db.getAllReports();
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_list_item_1, reports);
+        listReports.setAdapter(dataAdapter);
+        listReports.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                String value = Integer.toString(position+1);
+                List<String> info = MainActivity.displayInfo(value);
+                temp.setText("Temperature: " + info.get(0));
+                date.setText("Date: " + info.get(1));
+                time.setText("Time: " + info.get(2));
+            }
+        });
+    }
+
+    //Not used anymore. Was used when a spinner object was used to display records.
     private void loadSpinnerData() {
         DatabaseHelper db = new DatabaseHelper(getContext());
         List<String> reports = db.getAllReports();
@@ -79,21 +97,5 @@ public class ReportsFragment extends Fragment {
         });
     }
 
-    private void loadListData() {
-        DatabaseHelper db = new DatabaseHelper(getContext());
-        List<String> reports = db.getAllReports();
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_list_item_1, reports);
-        listReports.setAdapter(dataAdapter);
-        listReports.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                //String value = listReports.getSelectedItem().toString();
-                String value = Integer.toString(position+1);
-                List<String> info = MainActivity.displayInfo(value);
-                temp.setText("Temperature: " + info.get(0));
-                date.setText("Date: " + info.get(1));
-                time.setText("Time: " + info.get(2));
-            }
-        });
-    }
+
 }

@@ -21,6 +21,7 @@
                 android:id="@+id/txtTempInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16dp"
                 android:text="Enter your temperature:" />
 
             <EditText
@@ -41,6 +42,7 @@
                 android:id="@+id/txtDateLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16dp"
                 android:text="Enter the date:" />
 
             <DatePicker
@@ -61,6 +63,7 @@
                 android:id="@+id/txtTimeLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16dp"
                 android:text="Enter the time:" />
 
             <TimePicker
@@ -78,6 +81,7 @@
                 android:id="@+id/txtFeelingLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="16dp"
                 android:text="Choose how you're feeling from 1 to 10:" />
 
             <SeekBar

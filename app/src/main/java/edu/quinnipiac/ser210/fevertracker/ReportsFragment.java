@@ -1,10 +1,7 @@
 package edu.quinnipiac.ser210.fevertracker;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,19 +13,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
 
 public class ReportsFragment extends Fragment {
-    private SQLiteDatabase db;
-    private Cursor cursor;
 
-    //private Spinner spinner;
     private ListView listReports;
     private TextView temp, date, time, feeling;
 
@@ -66,9 +57,6 @@ public class ReportsFragment extends Fragment {
                         .navigate(R.id.action_reportsFragment_to_firstFragment);
             }
         });
-
-
-        //loadSpinnerData();
 
         loadListData();
         // Inflate the layout for this fragment

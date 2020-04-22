@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra(Intent.EXTRA_TEXT, dbHelper.getStoredTemp());
             intent.putExtra(Intent.EXTRA_TEXT, dbHelper.getStoredDate());
             intent.putExtra(Intent.EXTRA_TEXT, dbHelper.getStoredTime());
-            //intent.putExtra(Intent.EXTRA_TEXT, dbHelper.getStoredFeeling());
+            intent.putExtra(Intent.EXTRA_TEXT, dbHelper.getStoredFeeling());
             provider.setShareIntent(intent);
         }
 

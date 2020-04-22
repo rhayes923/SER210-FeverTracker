@@ -44,7 +44,6 @@ public class ReportsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_reports, container, false);
-        //spinner = view.findViewById(R.id.spnrReports);
         listReports = view.findViewById(R.id.listReports);
         temp = view.findViewById(R.id.txtTemp);
         date = view.findViewById(R.id.txtDate);

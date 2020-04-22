@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         dbHelper = new DatabaseHelper(this);
         db = dbHelper.getWritableDatabase();
+
+        provider = new ShareActionProvider(this);
     }
 
     @Override
@@ -49,13 +51,14 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
-        if (id == R.id.action_share) { //Share the cocktail
+        if (id == R.id.action_share) { //Share the record
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
             ///This is where the data will be shared with doctor
-            //intent.putExtra(Intent.EXTRA_TEXT, temp);
-            //intent.putExtra(Intent.EXTRA_TEXT, date);
-            //intent.putExtra(Intent.EXTRA_TEXT, time);
+            intent.putExtra(Intent.EXTRA_TEXT, dbHelper.getStoredTemp());
+            intent.putExtra(Intent.EXTRA_TEXT, dbHelper.getStoredDate());
+            intent.putExtra(Intent.EXTRA_TEXT, dbHelper.getStoredTime());
+            //intent.putExtra(Intent.EXTRA_TEXT, dbHelper.getStoredFeeling());
             provider.setShareIntent(intent);
         }
 

@@ -14,12 +14,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "feverTracker"; //The name of the database
     private static final int DB_VERSION = 1; //The version of the database
 
+    //Used to store the data as a string so that it can be shared easier
+    private String storedTemp = "";
+    private String storedDate = "";
+    private String storedTime = "";
+//  private String storedFeeling = "";
+
     DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         updateMyDatabase(db, 0, DB_VERSION);
     }
 
@@ -96,4 +103,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return list;
     }
+
+    public void setSelected(String temp, String date, String time) {
+        storedTemp = temp;
+        storedDate = date;
+        storedTime = time;
+
+//      storedFeeling = feeling;
+    }
+
+    public String getStoredTemp() {
+        return storedTemp;
+    }
+    public String getStoredDate() {
+        return storedDate;
+    }
+    public String getStoredTime() {
+        return storedTime;
+    }
+//    public String getStoredFeeling() {
+//        return storedFeeling;
+//    }
 }

@@ -27,7 +27,7 @@ public class ReportsFragment extends Fragment {
     private SQLiteDatabase db;
     private Cursor cursor;
 
-    private Spinner spinner;
+    //private Spinner spinner;
     private ListView listReports;
     private TextView temp, date, time;
 
@@ -44,7 +44,7 @@ public class ReportsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_reports, container, false);
-        spinner = view.findViewById(R.id.spnrReports);
+        //spinner = view.findViewById(R.id.spnrReports);
         listReports = view.findViewById(R.id.listReports);
         temp = view.findViewById(R.id.txtTemp);
         date = view.findViewById(R.id.txtDate);
@@ -57,7 +57,7 @@ public class ReportsFragment extends Fragment {
     }
 
     private void loadListData() {
-        DatabaseHelper db = new DatabaseHelper(getContext());
+        final DatabaseHelper db = new DatabaseHelper(getContext());
         List<String> reports = db.getAllReports();
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_list_item_1, reports);
         listReports.setAdapter(dataAdapter);
@@ -66,36 +66,43 @@ public class ReportsFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 String value = Integer.toString(position+1);
                 List<String> info = MainActivity.displayInfo(value);
-                temp.setText("Temperature: " + info.get(0));
-                date.setText("Date: " + info.get(1));
-                time.setText("Time: " + info.get(2));
+
+                String tempInfo = info.get(0);
+                String dateInfo = info.get(1);
+                String timeInfo = info.get(2);
+
+                temp.setText("Temperature: " + tempInfo);
+                date.setText("Date: " + dateInfo);
+                time.setText("Time: " + timeInfo);
+
+                db.setSelected(tempInfo, dateInfo, timeInfo);
             }
         });
     }
 
     //Not used anymore. Was used when a spinner object was used to display records.
-    private void loadSpinnerData() {
-        DatabaseHelper db = new DatabaseHelper(getContext());
-        List<String> reports = db.getAllReports();
-
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, reports);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
-        spinner.setSelection(spinner.getCount()-1);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String value = spinner.getSelectedItem().toString();
-                List<String> info = MainActivity.displayInfo(value);
-                temp.setText("Temperature: " + info.get(0));
-                date.setText("Date: " + info.get(1));
-                time.setText("Time: " + info.get(2));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
-        });
-    }
+//    private void loadSpinnerData() {
+//        DatabaseHelper db = new DatabaseHelper(getContext());
+//        List<String> reports = db.getAllReports();
+//
+//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, reports);
+//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(dataAdapter);
+//        spinner.setSelection(spinner.getCount()-1);
+//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                String value = spinner.getSelectedItem().toString();
+//                List<String> info = MainActivity.displayInfo(value);
+//                temp.setText("Temperature: " + info.get(0));
+//                date.setText("Date: " + info.get(1));
+//                time.setText("Time: " + info.get(2));
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {}
+//        });
+//    }
 
 
 }

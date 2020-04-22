@@ -28,6 +28,12 @@
         android:layout_height="wrap_content"
         android:text="@string/time" />
 
+    <TextView
+        android:id="@+id/txtFeeling"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Feeling:" />
+
     <ListView
         android:id="@+id/listReports"
         android:layout_width="match_parent"

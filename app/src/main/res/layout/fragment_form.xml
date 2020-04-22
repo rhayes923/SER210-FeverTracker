@@ -68,6 +68,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
+            <View
+                android:id="@+id/divider_time_feeling"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="?android:attr/listDivider" />
+
+            <TextView
+                android:id="@+id/txtFeelingLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Choose how you're feeling from 1 to 10:" />
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:max="9"
+                android:progress="1"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"/>
+
+            <TextView
+                android:id="@+id/txtCurrentFeelingLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+
             <Button
                 android:id="@+id/btnNext"
                 android:layout_width="match_parent"

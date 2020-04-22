@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         dbHelper = new DatabaseHelper(this);
+        //deleteDatabase("RECORD");
         db = dbHelper.getWritableDatabase();
 
         provider = new ShareActionProvider(this);
@@ -71,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static void insert(String temp, String date, String time) {
-        dbHelper.insertRecord(db, temp, date, time);
+    public static void insert(String temp, String date, String time, String feeling) {
+        dbHelper.insertRecord(db, temp, date, time, feeling);
     }
 
     public static List<String> displayInfo(String id) {

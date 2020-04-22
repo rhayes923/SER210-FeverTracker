@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +50,23 @@ public class ReportsFragment extends Fragment {
         temp = view.findViewById(R.id.txtTemp);
         date = view.findViewById(R.id.txtDate);
         time = view.findViewById(R.id.txtTime);
+
+        view.findViewById(R.id.new_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(ReportsFragment.this)
+                        .navigate(R.id.action_reportsFragment_to_secondFragment);
+            }
+        });
+
+        view.findViewById(R.id.back_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(ReportsFragment.this)
+                        .navigate(R.id.action_reportsFragment_to_firstFragment);
+            }
+        });
+
 
         //loadSpinnerData();
         loadListData();

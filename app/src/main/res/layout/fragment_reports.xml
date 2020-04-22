@@ -31,5 +31,25 @@
     <ListView
         android:id="@+id/listReports"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="457dp">
+
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/new_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/New" />
+
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/back" />
+    </LinearLayout>
 </LinearLayout>

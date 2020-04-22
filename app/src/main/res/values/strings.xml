@@ -7,7 +7,10 @@
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="reports_fragment_label">Reports Fragment</string>
+    <string name="New">Enter New Temperature</string>
+    <string name="records">Go To Records</string>
     <string name="next">Next</string>
+    <string name="back">Back To Main</string>
 
     <string name="hello_first_fragment">This application will allow you to input your temperature as well as the date and time of recording so that you can better share with your doctor a record of your fevers.</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>

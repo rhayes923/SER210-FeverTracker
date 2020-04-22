@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra(Intent.EXTRA_TEXT, dbHelper.getStoredTemp());
             intent.putExtra(Intent.EXTRA_TEXT, dbHelper.getStoredDate());
             intent.putExtra(Intent.EXTRA_TEXT, dbHelper.getStoredTime());
-            //intent.putExtra(Intent.EXTRA_TEXT, dbHelper.getStoredFeeling());
+            intent.putExtra(Intent.EXTRA_TEXT, dbHelper.getStoredFeeling());
             provider.setShareIntent(intent);
         }
 
@@ -71,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static void insert(String temp, String date, String time) {
-        dbHelper.insertRecord(db, temp, date, time);
+    public static void insert(String temp, String date, String time, String feeling) {
+        dbHelper.insertRecord(db, temp, date, time, feeling);
     }
 
     public static List<String> displayInfo(String id) {

@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +30,7 @@ public class ReportsFragment extends Fragment {
 
     //private Spinner spinner;
     private ListView listReports;
-    private TextView temp, date, time;
+    private TextView temp, date, time, feeling;
 
     public ReportsFragment() {
         // Required empty public constructor
@@ -44,13 +45,31 @@ public class ReportsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_reports, container, false);
-        //spinner = view.findViewById(R.id.spnrReports);
         listReports = view.findViewById(R.id.listReports);
         temp = view.findViewById(R.id.txtTemp);
         date = view.findViewById(R.id.txtDate);
         time = view.findViewById(R.id.txtTime);
+        feeling = view.findViewById(R.id.txtFeeling);
+
+        view.findViewById(R.id.new_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(ReportsFragment.this)
+                        .navigate(R.id.action_reportsFragment_to_secondFragment);
+            }
+        });
+
+        view.findViewById(R.id.back_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(ReportsFragment.this)
+                        .navigate(R.id.action_reportsFragment_to_firstFragment);
+            }
+        });
+
 
         //loadSpinnerData();
+
         loadListData();
         // Inflate the layout for this fragment
         return view;
@@ -70,39 +89,15 @@ public class ReportsFragment extends Fragment {
                 String tempInfo = info.get(0);
                 String dateInfo = info.get(1);
                 String timeInfo = info.get(2);
+                String feelingInfo = info.get(3);
 
                 temp.setText("Temperature: " + tempInfo);
                 date.setText("Date: " + dateInfo);
                 time.setText("Time: " + timeInfo);
+                feeling.setText("Feeling: " + feelingInfo);
 
-                db.setSelected(tempInfo, dateInfo, timeInfo);
+                db.setSelected(tempInfo, dateInfo, timeInfo, feelingInfo);
             }
         });
     }
-
-    //Not used anymore. Was used when a spinner object was used to display records.
-//    private void loadSpinnerData() {
-//        DatabaseHelper db = new DatabaseHelper(getContext());
-//        List<String> reports = db.getAllReports();
-//
-//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_item, reports);
-//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(dataAdapter);
-//        spinner.setSelection(spinner.getCount()-1);
-//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                String value = spinner.getSelectedItem().toString();
-//                List<String> info = MainActivity.displayInfo(value);
-//                temp.setText("Temperature: " + info.get(0));
-//                date.setText("Date: " + info.get(1));
-//                time.setText("Time: " + info.get(2));
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {}
-//        });
-//    }
-
-
 }

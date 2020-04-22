@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         dbHelper = new DatabaseHelper(this);
-        //deleteDatabase("RECORD");
         db = dbHelper.getWritableDatabase();
 
         provider = new ShareActionProvider(this);

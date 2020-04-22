@@ -1,7 +1,5 @@
 package edu.quinnipiac.ser210.fevertracker;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -16,7 +14,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
-
 
 public class ReportsFragment extends Fragment {
 

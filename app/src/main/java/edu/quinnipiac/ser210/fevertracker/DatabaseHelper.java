@@ -18,7 +18,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String storedTemp = "";
     private String storedDate = "";
     private String storedTime = "";
-//  private String storedFeeling = "";
+    private String storedFeeling = "";
 
     DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -26,7 +26,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
         updateMyDatabase(db, 0, DB_VERSION);
     }
 
@@ -36,11 +35,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void insertRecord(SQLiteDatabase db, String temp,
-                                    String date, String time) {
+                                    String date, String time, String feeling) {
         ContentValues feverValues = new ContentValues();
         feverValues.put("TEMPERATURE", temp);
         feverValues.put("DATE", date);
         feverValues.put("TIME", time);
+        feverValues.put("FEELING", feeling);
         db.insert("RECORD", null, feverValues);
     }
 
@@ -49,7 +49,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL("CREATE TABLE RECORD (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "TEMPERATURE TEXT, "
                     + "DATE TEXT, "
-                    + "TIME TEXT); ");
+                    + "TIME TEXT, "
+                    + "FEELING TEXT); ");
         }
         if (oldVersion < 2) {
 
@@ -68,6 +69,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     list.add(cursor.getString(cursor.getColumnIndex("TEMPERATURE")));
                     list.add(cursor.getString(cursor.getColumnIndex("DATE")));
                     list.add(cursor.getString(cursor.getColumnIndex("TIME")));
+                    list.add(cursor.getString(cursor.getColumnIndex("FEELING")));
                 }
             }
             cursor.close();
@@ -90,8 +92,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Cursor cursor = db.rawQuery(selectQuery, null);
             if (cursor.getCount() > 0) {
                 while (cursor.moveToNext()) {
-                    int id = cursor.getInt(cursor.getColumnIndex("TEMPERATURE"));
-                    list.add(String.valueOf(id) + " degrees");
+                    list.add(cursor.getString(cursor.getColumnIndex("TEMPERATURE")));
                 }
             }
             db.setTransactionSuccessful();
@@ -104,12 +105,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
-    public void setSelected(String temp, String date, String time) {
+    public void setSelected(String temp, String date, String time, String feeling) {
         storedTemp = temp;
         storedDate = date;
         storedTime = time;
-
-//      storedFeeling = feeling;
+        storedFeeling = feeling;
     }
 
     public String getStoredTemp() {
@@ -121,7 +121,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public String getStoredTime() {
         return storedTime;
     }
-//    public String getStoredFeeling() {
-//        return storedFeeling;
-//    }
+    public String getStoredFeeling() {
+        return storedFeeling;
+    }
 }

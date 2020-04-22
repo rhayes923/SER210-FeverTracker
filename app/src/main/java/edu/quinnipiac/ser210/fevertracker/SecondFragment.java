@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,8 @@ import java.util.Calendar;
 
 public class SecondFragment extends Fragment {
 
+    private TextView currentFeeling;
+
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -30,6 +34,22 @@ public class SecondFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        currentFeeling = getView().findViewById(R.id.txtCurrentFeelingLabel);
+        SeekBar feelingBar = getView().findViewById(R.id.seekBar);
+        feelingBar.setProgress(0);
+        updateSeekBarText(feelingBar, feelingBar.getProgress(), false);
+
+        feelingBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                updateSeekBarText(seekBar, progress, fromUser);
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
 
         view.findViewById(R.id.btnNext).setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
@@ -83,7 +103,18 @@ public class SecondFragment extends Fragment {
             minute = "" + minuteInt;
         }
 
+        SeekBar feelingBar = getView().findViewById(R.id.seekBar);
+        String feeling = String.valueOf(feelingBar.getProgress()+1);
+
         String time = hour + ":" + minute + " " + meridian;
-        MainActivity.insert(temp, date, time);
+        MainActivity.insert(temp, date, time, feeling);
+    }
+
+    public void updateSeekBarText(SeekBar seekBar, int progress, boolean fromUser) {
+        int value = (progress * (seekBar.getWidth() - 3 * seekBar.getThumbOffset()))
+                / seekBar.getMax();
+        progress = progress + 1;
+        currentFeeling.setText("" + progress);
+        currentFeeling.setX(seekBar.getX() + value + seekBar.getThumbOffset() / 2);
     }
 }

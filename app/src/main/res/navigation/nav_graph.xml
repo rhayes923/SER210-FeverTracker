@@ -14,12 +14,16 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_reportsFragment"
+            app:destination="@id/reportsFragment" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
         android:name="edu.quinnipiac.ser210.fevertracker.SecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_form">
+
         <action
             android:id="@+id/action_SecondFragment_to_reportsFragment"
             app:destination="@id/reportsFragment" />
@@ -29,5 +33,12 @@
         android:name="edu.quinnipiac.ser210.fevertracker.ReportsFragment"
         android:label="@string/reports_fragment_label"
         tools:layout="@layout/fragment_reports">
+
+        <action
+            android:id="@+id/action_reportsFragment_to_firstFragment"
+            app:destination="@id/FirstFragment"/>
+        <action
+            android:id="@+id/action_reportsFragment_to_secondFragment"
+            app:destination="@id/SecondFragment"/>
     </fragment>
 </navigation>

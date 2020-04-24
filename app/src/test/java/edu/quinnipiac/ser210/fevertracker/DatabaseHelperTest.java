@@ -14,12 +14,10 @@ import static org.junit.Assert.*;
 
 public class DatabaseHelperTest {
     private static DatabaseHelper myDatabaseHelper;
-    private static SQLiteDatabase db;
 
     @Before
     public void setUp() throws Exception {
         myDatabaseHelper = new DatabaseHelper(null);
-        db = myDatabaseHelper.getWritableDatabase();
     }
 
     @After
@@ -29,7 +27,7 @@ public class DatabaseHelperTest {
     @Test
     public void getStoredTemp() {
         String temp = "101.1";
-        myDatabaseHelper.insertRecord(null, temp, null, null, null);
+        myDatabaseHelper.setSelected(temp,null,null,null);
 
         assertEquals("101.1", myDatabaseHelper.getStoredTemp());
     }
@@ -37,26 +35,26 @@ public class DatabaseHelperTest {
     @Test
     public void getStoredDate() {
         String date = "04-20-20";
-        myDatabaseHelper.insertRecord(null, null, date, null, null);
+        myDatabaseHelper.setSelected(null,date,null,null);
 
-        assertEquals("04-20-20", myDatabaseHelper.getStoredTemp());
+        assertEquals("04-20-20", myDatabaseHelper.getStoredDate());
     }
 
     @Test
     public void getStoredTime() {
         String time = "03:36 PM";
-        myDatabaseHelper.insertRecord(null, null, null, time, null);
+        myDatabaseHelper.setSelected(null,null, time,null);
 
-        assertEquals("03:36 PM", myDatabaseHelper.getStoredTemp());
+        assertEquals("03:36 PM", myDatabaseHelper.getStoredTime());
 
     }
 
     @Test
     public void getStoredFeeling() {
         String feeling = "6";
-        myDatabaseHelper.insertRecord(null, null, null, null, feeling);
+        myDatabaseHelper.setSelected(null,null,null,feeling);
 
-        assertEquals("6", myDatabaseHelper.getStoredTemp());
+        assertEquals("6", myDatabaseHelper.getStoredFeeling());
     }
 
     @Test

@@ -29,7 +29,7 @@ public class DatabaseHelperTest {
         String temp = "101.1";
         myDatabaseHelper.setSelected(temp,null,null,null);
 
-        assertEquals("101.1", myDatabaseHelper.getStoredTemp());
+        assertEquals(temp, myDatabaseHelper.getStoredTemp());
     }
 
     @Test
@@ -37,7 +37,7 @@ public class DatabaseHelperTest {
         String date = "04-20-20";
         myDatabaseHelper.setSelected(null,date,null,null);
 
-        assertEquals("04-20-20", myDatabaseHelper.getStoredDate());
+        assertEquals(date, myDatabaseHelper.getStoredDate());
     }
 
     @Test
@@ -45,7 +45,7 @@ public class DatabaseHelperTest {
         String time = "03:36 PM";
         myDatabaseHelper.setSelected(null,null, time,null);
 
-        assertEquals("03:36 PM", myDatabaseHelper.getStoredTime());
+        assertEquals(time, myDatabaseHelper.getStoredTime());
 
     }
 
@@ -54,7 +54,7 @@ public class DatabaseHelperTest {
         String feeling = "6";
         myDatabaseHelper.setSelected(null,null,null,feeling);
 
-        assertEquals("6", myDatabaseHelper.getStoredFeeling());
+        assertEquals(feeling, myDatabaseHelper.getStoredFeeling());
     }
 
     @Test

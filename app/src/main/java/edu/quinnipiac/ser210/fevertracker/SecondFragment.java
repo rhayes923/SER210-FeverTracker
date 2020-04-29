@@ -85,10 +85,13 @@ public class SecondFragment extends Fragment {
             if (hourInt == 0) {
                 hourInt = 12;
             }
-        } else if (hourInt >= 12) {
+        } else if (hourInt > 12) {
             meridian = "PM";
             hourInt = hourInt - 12;
+        } else if (hourInt == 12) {
+            meridian = "PM";
         }
+
         String hour = "";
         if (hourInt < 10) {
             hour = "0" + hourInt;

@@ -22,6 +22,7 @@ import java.util.Calendar;
 public class SecondFragment extends Fragment {
 
     private TextView currentFeeling;
+    private double temperature;
 
     @Override
     public View onCreateView(
@@ -36,6 +37,7 @@ public class SecondFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         currentFeeling = getView().findViewById(R.id.txtCurrentFeelingLabel);
+        temperature = 0.0;
         SeekBar feelingBar = getView().findViewById(R.id.seekBar);
         feelingBar.setProgress(0);
         updateSeekBarText(feelingBar, feelingBar.getProgress(), false);
@@ -56,8 +58,14 @@ public class SecondFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 createReport();
-                NavHostFragment.findNavController(SecondFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_reportsFragment);
+                if (temperature >= 102) { //Dangerous temperature
+                    NavHostFragment.findNavController(SecondFragment.this)
+                            .navigate(R.id.action_SecondFragment_to_warning);
+                } else {
+                    NavHostFragment.findNavController(SecondFragment.this)
+                            .navigate(R.id.action_SecondFragment_to_reportsFragment);
+                }
+
             }
         });
     }
@@ -65,6 +73,7 @@ public class SecondFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void createReport() {
         String temp = ((EditText) getView().findViewById(R.id.txtTemp)).getText().toString();
+        temperature = Double.parseDouble(temp); //Creates a value that can be compared to 102 degrees. If it is greater than the temp is dangerous.
 
         DatePicker datePicker = getView().findViewById(R.id.date_picker);
         int day = datePicker.getDayOfMonth();

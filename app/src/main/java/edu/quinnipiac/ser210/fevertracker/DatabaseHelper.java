@@ -91,7 +91,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Cursor cursor = db.rawQuery(selectQuery, null);
             if (cursor.getCount() > 0) {
                 while (cursor.moveToNext()) {
-                    list.add(cursor.getString(cursor.getColumnIndex("TEMPERATURE")));
+                    list.add("Temperature: " + cursor.getString(cursor.getColumnIndex("TEMPERATURE")) + " Degrees;\nDate Recorded: " +
+                            cursor.getString(cursor.getColumnIndex("DATE")) + ";\nTime Recorded: " +
+                            cursor.getString(cursor.getColumnIndex("TIME")) + "\n");
                 }
             }
             db.setTransactionSuccessful();

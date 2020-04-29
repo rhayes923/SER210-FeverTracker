@@ -1,5 +1,9 @@
 package edu.quinnipiac.ser210.fevertracker;
-
+/*
+Authors: Tim Carta, Ryan Hayes, Neel Bains
+Class Name: Warning
+Description: contains a layout for the warning of a high temperature.
+ */
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;

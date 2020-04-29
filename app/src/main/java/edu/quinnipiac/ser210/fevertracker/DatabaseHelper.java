@@ -1,5 +1,11 @@
 package edu.quinnipiac.ser210.fevertracker;
-
+/*
+Authors: Tim Carta, Ryan Hayes, Neel Bains
+Class Name: DatabaseHelper
+Description: This class defines the database that we use in this program.
+Database holds the temperature, date, time, and feeling of the user to be used in another class.
+This database holds data on the phone regardless of if the app is running.
+ */
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -33,6 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         updateMyDatabase(db, oldVersion, newVersion);
     }
 
+    //method to insert a record into the database. give the record values
     public void insertRecord(SQLiteDatabase db, String temp,
                                     String date, String time, String feeling) {
         ContentValues feverValues = new ContentValues();
@@ -43,6 +50,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert("RECORD", null, feverValues);
     }
 
+    //Database update method
     private void updateMyDatabase(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion < 1) {
             db.execSQL("CREATE TABLE RECORD (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -56,6 +64,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    //Creates a list of strings for each column in the database and names it
     public List<String> displayReport(String id) {
         List<String> list = new ArrayList<String>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -81,6 +90,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
+    //Populates the database with the reports that are made
     public List<String> getAllReports() {
         List<String> list = new ArrayList<String>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -106,6 +116,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list;
     }
 
+    //Setter to have a certain entry selected
     public void setSelected(String temp, String date, String time, String feeling) {
         storedTemp = temp;
         storedDate = date;
@@ -113,6 +124,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         storedFeeling = feeling;
     }
 
+
+    //Getters for the data in each entry
     public String getStoredTemp() {
         return storedTemp;
     }

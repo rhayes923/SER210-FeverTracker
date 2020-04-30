@@ -1,5 +1,9 @@
 package edu.quinnipiac.ser210.fevertracker;
-
+/*
+Authors: Tim Carta, Ryan Hayes, Neel Bains
+Class Name: FirstFragment
+Description: Fragment for the first screen. allows you to access other fragments.
+ */
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +27,7 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //first button brings you to the new entry fragment
         view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,6 +36,7 @@ public class FirstFragment extends Fragment {
             }
         });
 
+        //second button brings you to the fragment containing the database
         view.findViewById(R.id.button_second).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

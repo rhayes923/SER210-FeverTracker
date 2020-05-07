@@ -1,5 +1,6 @@
 # Fever Tracker
 SER210 Spring 2020 Completed Project
+Neel Bains, Timothy Carta, Ryan Hayes
 
 Fever Tracker is an Android application that allows the user to keep track of their temperature.
 The user can either add a new record or view records that were previously entered.
